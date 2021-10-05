@@ -33,56 +33,57 @@ class QListItem(QtWidgets.QListWidgetItem):
 			super().__init__(strNome, widget)
 		
 ## Funzione che inizializza la finestra window, e se è una dialog la visualizza anche
-def initializeWindow(window):
-	if window == window1:
+def initializeWindow(w):
+	if w == window1:
 		# inizializzo tab1
 		for comparto in M.comparti:	# aggiungo i comparti
-			QListItem(':: '+comparto.capitalize()+' ::', window1.tab1_listMuscoli, 0)
+			QListItem(':: '+comparto.capitalize()+' ::', w.tab1_listMuscoli, 0)
 			for muscolo in M.muscoli:	# aggiungo i muscoli
 				if muscolo.comparto == comparto:
 					if muscolo.capi == []:
-						QListItem('    '+muscolo.nome.capitalize(), window1.tab1_listMuscoli, 1)
+						QListItem('    '+muscolo.nome.capitalize(), w.tab1_listMuscoli, 1)
 					else:
-						QListItem('    '+muscolo.nome.capitalize(), window1.tab1_listMuscoli, 1)
+						QListItem('    '+muscolo.nome.capitalize(), w.tab1_listMuscoli, 1)
 						for capo in muscolo.capi:
-							QListItem('      - '+capo, window1.tab1_listMuscoli, 2, muscolo.nome)						
+							QListItem('      - '+capo, w.tab1_listMuscoli, 2, muscolo.nome)						
 						
-		window.tab1_listMuscoli.setCurrentRow(1)
-		refreshList(window.tab1_listEsercizi, window.tab1_listMuscoli)	# preparo listEsercizi
+		w.tab1_listMuscoli.setCurrentRow(1)
+		refreshList(window1.tab1_listEsercizi, window1.tab1_listMuscoli)	# preparo listEsercizi
 		
 		# ~ #inizializzo tab2
 		for obj in M.esercizi:	# aggiungo gli esercizi a listEsercizi
-			window.tab2_listEsercizi.addItem(obj.nome.capitalize())
-		window.tab2_listEsercizi.setCurrentRow(0)	# seleziono prima riga di listEsercizi
+			w.tab2_listEsercizi.addItem(obj.nome.capitalize())
+		w.tab2_listEsercizi.setCurrentRow(0)	# seleziono prima riga di listEsercizi
 				
-		refreshList(window.tab2_listMuscoli, window.tab2_listEsercizi)	# preparo listMuscoli
+		refreshList(w.tab2_listMuscoli, w.tab2_listEsercizi)	# preparo listMuscoli
 		
-		window.tabWidget.setCurrentIndex(initTabIndex)	# imposto quale tab è visualizzata
-		window.show()
+		w.tabWidget.setCurrentIndex(initTabIndex)	# imposto quale tab è visualizzata
+		w.move(0, 178)
+		w.show()
 	
-	if window == window2:
-		window.tableSessione.setColumnWidth(0, 330)
-		window.tableSessione.setColumnWidth(1, 30)
-		window.tableSessione.setColumnWidth(2, 30)
-		window.tableSessione.setColumnWidth(3, 100)
-		window.tableSessione.setRowCount(0)
+	if w == window2:
+		w.tableSessione.setColumnWidth(0, 330)
+		w.tableSessione.setColumnWidth(1, 30)
+		w.tableSessione.setColumnWidth(2, 30)
+		w.tableSessione.setColumnWidth(3, 100)
+		w.tableSessione.setRowCount(0)
 	
-	if window == dialogSalva:
-		window.tboxNome.clear()
-		window.show()
+	if w == dialogSalva:
+		w.tboxNome.clear()
+		w.show()
 		
-	if window == dialogCarica:
-		if window.isHidden() == False: return
-		dialogCarica.listWidget.clear()
+	if w == dialogCarica:
+		if w.isHidden() == False: return
+		w.listWidget.clear()
 		#considero i file che hanno estensione .ses nella cartella attuale e li aggiungo a listWidget
 		ls = listdir()
 		for f in ls:
 			if f[-3:len(f)] == 'ses':
-				window.listWidget.addItem(f)
-		window.listWidget.setCurrentRow(0)
-		window.show()
+				w.listWidget.addItem(f[0:len(f)-len(saveFileExt)])
+		w.listWidget.setCurrentRow(0)
+		w.show()
 		
-	return window
+	return w
 		
 ## Funzione che fa popola la lista slave secondo i risultati di ricerca
 def refreshList(slave, master):
@@ -176,7 +177,10 @@ def buildSessione(ses = None):
 ## Funzione che salva tableSessione su un file .ses, in forma CSV
 def salvaSessione(strNome):
 	t = datetime.today()
-	path = str(t.year) + '-' + str(t.month) + '-'+str(t.day)
+	if t.day < 10: path = str(t.year) + '-' + str(t.month) + '-' + '0' + str(t.day)
+	else: path = str(t.year) + '-' + str(t.month) + '-' + str(t.day)
+	
+	
 	if strNome == '': path = path + saveFileExt
 	else: path = path + '_' + str(strNome) + saveFileExt
 	
@@ -187,7 +191,7 @@ def salvaSessione(strNome):
 			for c in range(window2.tableSessione.columnCount()):
 				try: f.write(window2.tableSessione.item(r, c).text() + ';')
 				except: f.write(';')
-		f.write('\n')
+			f.write('\n')
 	
 	dialogSalva.close()
 	return 0
@@ -212,7 +216,7 @@ def caricaSessione(strNome):
 ## Funzione che gestisce i pulsanti +, -, Up e Dn
 def tbHandler(intIndex, item = None):
 	if intIndex == 0:	# aggiungi
-		if item is None: return	# in questo modo evito l'eccezione se non c'è nessun elemento selezionato
+		# ~ if item is None: return	# in questo modo evito l'eccezione se non c'è nessun elemento selezionato
 		window1.tab1_listSessione.addItem(item.text())
 		window1.tab1_listSessione.setCurrentRow(window1.tab1_listSessione.count()-1)
 		
@@ -257,6 +261,6 @@ if __name__ == "__main__":
 	window2.pbSalva.clicked.connect(lambda: initializeWindow(dialogSalva))
 	
 	dialogSalva.pbSalva.clicked.connect(lambda: salvaSessione(dialogSalva.tboxNome.text()))
-	dialogCarica.pbCarica.clicked.connect(lambda: caricaSessione(dialogCarica.listWidget.currentItem().text()))
+	dialogCarica.pbCarica.clicked.connect(lambda: caricaSessione(dialogCarica.listWidget.currentItem().text()+saveFileExt))
 
 input()
