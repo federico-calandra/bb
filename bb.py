@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# Versione 2.2
+# Versione 2.3
 
 from PyQt5 import QtCore, QtWidgets, uic
 from datetime import *
@@ -154,26 +154,41 @@ def refreshList(slave, master):
 
 ## Funzione che popola window2.tableSessione secondo elementi da listSessione o da file
 def buildSessione(ses = None):
+	t = window2.tableSessione
 	initializeWindow(window2)
 
 	if ses is None:	# costruisco la tabella a partire da listSessione
 		if window1.tab1_listSessione.count() == 0: return
 		for i in range(window1.tab1_listSessione.count()):
 			item = window1.tab1_listSessione.item(i)
-			window2.tableSessione.insertRow(i)
-			window2.tableSessione.setItem(i, 0, QtWidgets.QTableWidgetItem(window1.tab1_listSessione.item(i).text()))
-		window2.tableSessione.setCurrentCell(0, 0)
+			t.insertRow(i)
+			t.setItem(i, 0, QtWidgets.QTableWidgetItem(window1.tab1_listSessione.item(i).text()))
+		t.setCurrentCell(0, 0)
 		
 	elif ses is not None:	# costruisco la tabella per invocazione da caricaSessione
 		for i in range(len(ses)):
-			window2.tableSessione.insertRow(window2.tableSessione.rowCount())
-			for j in range(window2.tableSessione.columnCount()):
-				window2.tableSessione.setItem(i, j, QtWidgets.QTableWidgetItem(ses[i][j]))
-	
+			t.insertRow(t.rowCount())
+			for j in range(t.columnCount()-1):
+				t.setItem(i, j, QtWidgets.QTableWidgetItem(ses[i][j]))		
+		tableCheckbox()
+		
 	dialogCarica.hide()
 	window2.show()
 	return window2.tableSessione
 	
+# ~ # aggiungo le checkbox
+def tableCheckbox():
+	t = window2.tableSessione
+	for rc in range(t.rowCount()):
+		t.removeCellWidget(rc, 4)
+		try: s = int(t.item(rc, 1).text())
+		except: s = 0
+		w = QtWidgets.QWidget()
+		l = QtWidgets.QHBoxLayout(w)
+		for i in range(s): l.addWidget(QtWidgets.QCheckBox())
+		t.setCellWidget(rc, 4, w)
+	return 0
+
 ## Funzione che salva tableSessione su un file .ses, in forma CSV
 def salvaSessione(strNome):
 	t = datetime.today()
@@ -257,6 +272,8 @@ if __name__ == "__main__":
 	
 	window1.pbOk.clicked.connect(lambda: buildSessione())
 	window1.pbCarica.clicked.connect(lambda: initializeWindow(dialogCarica))
+	
+	window2.tableSessione.itemSelectionChanged.connect(lambda: tableCheckbox())
 	
 	window2.pbSalva.clicked.connect(lambda: initializeWindow(dialogSalva))
 	
