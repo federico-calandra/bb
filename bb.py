@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# Versione 2.1
+# Versione 2.2
 
 from PyQt5 import QtCore, QtWidgets, uic
 from datetime import *
