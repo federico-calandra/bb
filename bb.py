@@ -75,7 +75,8 @@ def initializeWindow(w):
 	if w == dialogCarica:
 		if w.isHidden() == False: return
 		w.listWidget.clear()
-		#considero i file che hanno estensione .ses nella cartella attuale e li aggiungo a listWidget
+		# considero i file che hanno estensione .ses nella cartella attuale e li aggiungo a listWidget
+		# TODO listare anche files in sottocartelle
 		ls = listdir()
 		for f in ls:
 			if f[-3:len(f)] == 'ses':
