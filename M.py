@@ -88,7 +88,7 @@ def creaEsercizi():
 	esercizi.append(Esercizio('curl avambraccio, presa prona', [Muscolo('braccia', 'brachiale', [], 1), Muscolo('braccia', 'bicipite brachiale', ['lungo', 'breve'], 2)]))
 	esercizi.append(Esercizio('curl avambraccio, presa supina', [Muscolo('braccia', 'brachiale', [], 1), Muscolo('braccia', 'brachioradiale', [], 2)]))
 	# approfondire diretto e inverso #
-	esercizi.append(Esercizio('dip', [Muscolo('torso', 'pettorale', ['addominale']), Muscolo('braccia', 'tricipite brachiale', ['lungo', 'laterale', 'mediale']), Muscolo('spalle', 'deltoide', ['anteriore'])]))
+	esercizi.append(Esercizio('dip', [Muscolo('torso', 'pettorale', ['addominale'], 1), Muscolo('braccia', 'tricipite brachiale', ['lungo', 'laterale', 'mediale'], 1), Muscolo('spalle', 'deltoide', ['anteriore'], 1)]))
 	esercizi.append(Esercizio('dip inverso', [Muscolo('braccia', 'tricipite brachiale', ['lungo', 'laterale', 'mediale']), Muscolo('torso', 'pettorale', ['clavicolare', 'sternale', 'addominale']), Muscolo('spalle', 'deltoide', ['anteriore'])]))
 	esercizi.append(Esercizio('distensione panca piana', [Muscolo('torso', 'pettorale', ['clavicolare', 'sternale', 'addominale'], 1), Muscolo('braccia', 'tricipite brachiale', ['lungo', 'mediale'], 2), Muscolo('spalle', 'deltoide', ['anteriore'], 2)]))
 	esercizi.append(Esercizio('distensione panca inclinata', [Muscolo('torso', 'pettorale', ['clavicolare'], 1), Muscolo('braccia', 'tricipite brachiale', ['lungo', 'mediale'], 2), Muscolo('spalle', 'deltoide', ['anteriore'], 2)]))
@@ -114,6 +114,7 @@ def creaEsercizi():
 	esercizi.append(Esercizio('pullover manubrio', [Muscolo('torso', 'pettorale', ['clavicolare', 'sternale', 'addominale'], 1), Muscolo('braccia', 'tricipite brachiale', ['lungo'], 1), Muscolo('spalle', 'rotondo grande', [], 1), Muscolo('dorso', 'dorsale', ['vertebrale', 'scapolare', 'iliaco', 'costale'], 1)]))
 	# approfondire varie impugnature #
 	esercizi.append(Esercizio('rematore con bilanciere', [Muscolo('dorso', 'dorsale', ['vertebrale', 'scapolare', 'iliaco', 'costale'], 1), Muscolo('dorso', 'rotondo grande', [], 1), Muscolo('spalle', 'deltoide', ['posteriore'], 1), Muscolo('dorso', 'trapezio', ['discendente', 'trasversale', 'ascendente'], 1)]))
+	esercizi.append(Esercizio('rematore orizzontale', [Muscolo('dorso', 'trapezio', ['discendente', 'trasversale', 'ascendente'], 1), Muscolo('dorso', 'dorsale', ['vertebrale', 'scapolare', 'iliaco', 'costale'],1), Muscolo('spalle', 'deltoide', ['posteriore'], 1), Muscolo('spalle', 'rotondo grande', [], 1), Muscolo('braccia', 'brachiale', [], 1), Muscolo('braccia', 'bicipite brachiale', [], 1)]))
 	esercizi.append(Esercizio('rematore verticale', [Muscolo('dorso', 'trapezio', ['discendente', 'trasversale', 'ascendente'], 1), Muscolo('spalle', 'deltoide', ['anteriore', 'laterale', 'posteriore'], 1), Muscolo('braccia', 'bicipite brachiale', ['lungo', 'breve'], 1), Muscolo('braccia', 'brachioradiale', [], 2)]))
 	esercizi.append(Esercizio('sollevamento busto da terra', [Muscolo('addome', 'retto addominale', [], 1), Muscolo('addome', 'obliquo', [], 2)]))
 	esercizi.append(Esercizio('sollevamento gambe da terra', [Muscolo('addome', 'retto addominale', [], 1), Muscolo('addome', 'obliquo', [], 2), Muscolo('gambe', 'tensore fascia lata', [], 3), Muscolo('gambe', 'quadricipite', ['femorale'], 3)]))
