@@ -75,6 +75,7 @@ def creaEsercizi():
 	esercizi = []
 	esercizi.append(Esercizio('affondo con manubri', [Muscolo('gambe', 'quadricipite', ['femorale', 'laterale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
 	esercizi.append(Esercizio('affondo alternato', [Muscolo('gambe', 'gluteo grande', [], 1), Muscolo('gambe', 'quadricipite', ['femorale', 'laterale', 'mediale'], 1)]))
+	esercizi.append(Esercizio('affondo bulgaro', [Muscolo('gambe', 'gluteo grande', [], 1), Muscolo('gambe', 'quadricipite', ['femorale', 'laterale', 'mediale'], 1)]))
 	esercizi.append(Esercizio('alzata frontale', [Muscolo('spalle', 'deltoide', ['anteriore'], 1), Muscolo('torso', 'pettorale', ['clavicolare'], 1)]))
 	esercizi.append(Esercizio('alzata frontale con bilanciere', [Muscolo('spalle', 'deltoide', ['anteriore'], 1), Muscolo('torso', 'pettorale', ['clavicolare'], 1)]))
 	esercizi.append(Esercizio('alzata laterale', [Muscolo('spalle', 'deltoide', ['laterale'], 1), Muscolo('dorso', 'trapezio', ['discendente'], 2)]))
@@ -118,7 +119,10 @@ def creaEsercizi():
 	esercizi.append(Esercizio('rematore verticale', [Muscolo('dorso', 'trapezio', ['discendente', 'trasversale', 'ascendente'], 1), Muscolo('spalle', 'deltoide', ['anteriore', 'laterale', 'posteriore'], 1), Muscolo('braccia', 'bicipite brachiale', ['lungo', 'breve'], 1), Muscolo('braccia', 'brachioradiale', [], 2)]))
 	esercizi.append(Esercizio('sollevamento busto da terra', [Muscolo('addome', 'retto addominale', [], 1), Muscolo('addome', 'obliquo', [], 2)]))
 	esercizi.append(Esercizio('sollevamento gambe da terra', [Muscolo('addome', 'retto addominale', [], 1), Muscolo('addome', 'obliquo', [], 2), Muscolo('gambe', 'tensore fascia lata', [], 3), Muscolo('gambe', 'quadricipite', ['femorale'], 3)]))
-	esercizi.append(Esercizio('squat', [Muscolo('gambe', 'quadricipite femorale', ['femorale', 'laterale', 'intermedio', 'mediale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
+	esercizi.append(Esercizio('air squat', [Muscolo('gambe', 'quadricipite femorale', ['femorale', 'laterale', 'intermedio', 'mediale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
+	esercizi.append(Esercizio('back squat', [Muscolo('gambe', 'quadricipite femorale', ['femorale', 'laterale', 'intermedio', 'mediale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
+	esercizi.append(Esercizio('goblet squat', [Muscolo('gambe', 'quadricipite femorale', ['femorale', 'laterale', 'intermedio', 'mediale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
+	esercizi.append(Esercizio('jump squat', [Muscolo('gambe', 'quadricipite femorale', ['femorale', 'laterale', 'intermedio', 'mediale'], 1), Muscolo('gambe', 'gluteo grande', [], 1)]))
 	# approfondire differenze fra avanti e dietro #
 	esercizi.append(Esercizio('trazione sbarra avanti, presa prona', [Muscolo('dorso', 'dorsale', ['vertebrale', 'scapolare'], 1), Muscolo('dorso', 'rotondo grande', [], 1), Muscolo('dorso', 'trapezio', ['ascendente'], 1), Muscolo('braccia', 'bicipite brachiale', ['lungo', 'breve'], 2), Muscolo('braccia', 'brachiale', [], 2), Muscolo('braccia', 'brachioradiale', [], 2), Muscolo('torso', 'pettorale', ['clavicolare', 'trasversale', 'addominale'], 3)]))
 	esercizi.append(Esercizio('trazione sbarra avanti, presa supina', [Muscolo('dorso', 'dorsale', ['vertebrale', 'scapolare', 'iliaco', 'costale'], 1), Muscolo('dorso', 'rotondo grande', [], 1), Muscolo('braccia', 'bicipite brachiale', ['lungo', 'breve'], 1), Muscolo('braccia', 'brachiale', [], 1), Muscolo('braccia', 'brachioradiale', [], 1), Muscolo('dorso', 'trapezio', ['trasverale', 'ascendente'], 2), Muscolo('torso', 'pettorale', ['clavicolare', 'trasversale', 'addominale'], 3)]))
